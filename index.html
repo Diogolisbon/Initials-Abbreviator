@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Initials Abbreviator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    #inputName, #result {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 200px;
+      font-size: 16px;
+    }
+
+    #result {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    #submitBtn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <label for="inputName">Enter your name:</label>
+    <input type="text" id="inputName" placeholder="John Doe">
+
+    <button id="submitBtn" onclick="showInitials()">Get Initials</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function abbrevName(name) {
+      var nameArray = name.split('');
+      var initialsArray = [];
+
+      for (var i = 0; i < nameArray.length; i++) {
+        if (nameArray[i] === ' ') {
+          initialsArray.push(nameArray[0].toUpperCase(), '.');
+          initialsArray.push(nameArray[i + 1].toUpperCase(), '.');
+          break;
+        }
+      }
+
+      return initialsArray.join('');
+    }
+
+    function showInitials() {
+      var inputName = document.getElementById('inputName').value;
+      var resultDiv = document.getElementById('result');
+      var result = abbrevName(inputName);
+      resultDiv.textContent = "Result: " + result;
+      console.log(result);
+    }
+  </script>
+</body>
+</html>
